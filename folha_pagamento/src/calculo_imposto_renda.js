@@ -24,6 +24,6 @@ function calcularImpostoRenda(salarioBruto) {
         pagarIR = 884.96
     }
 
-    return (pagarIR).toFixed(2)
+    return pagarIR.toFixed(2)
 }
     module.exports = calcularImpostoRenda

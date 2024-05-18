@@ -1,3 +1,8 @@
+const fs = require('fs')
+const PDFDocument = require('pdfkit')
+const doc = new PDFDocument();
+
+
 const calcSalarioLiquido = require("./calculo_salario_liquido");
 const calcularINSS = require("./calculo_inss");
 const calcularImpostoRenda = require("./calculo_imposto_renda");
@@ -7,6 +12,23 @@ const input = readline.createInterface(
     process.stdin,
     process.stdout
 );
+
+// function criarPDF(valid) {
+//     if (valid == true) {
+//         doc.pipe(fs.createWriteStream("Holerite.pdf"));
+//         doc.fontSize(16)
+
+//         doc.text("--- Folha de Pagamento ---\n")
+//         doc.text(`Nome: ${nomeDigitado}`)
+//         doc.text(`CPF: ${cpfDigitado}`)
+//         doc.text("--------------------------")
+//         doc.text(`Salário Bruto: R$ ${salarioBruto}`)
+//         doc.text(`Desconto INSS: R$ ${calcularINSS(salarioBruto)}`)
+//         doc.text(`Desconto IR: R$ ${calcularImpostoRenda(salarioBruto)}`)
+//         doc.text(`Salário Liquido: R$ ${calcSalarioLiquido(salarioBruto)}`)
+//         doc.end()
+//     }
+// }
 
 input.question("Qual seu nome?: ", (nomeDigitado) => {
     input.question("Qual seu CPF?: ", (cpfDigitado) => {
@@ -23,16 +45,27 @@ input.question("Qual seu nome?: ", (nomeDigitado) => {
                 console.log(`Salário Liquido: R$ ${calcSalarioLiquido(salarioBruto)}`)
                 console.log("--------------------------")
 
-                input.close()
+                input.question("Deseja gerar um PDF? (S ou N): ", (valorDigitado => {
+                    if(valorDigitado == "S" || valorDigitado == "s") {
+                        doc.pipe(fs.createWriteStream("Holerite.pdf"));
+                        doc.fontSize(16)
+
+                        doc.text("--- Folha de Pagamento ---\n")
+                        doc.text(`Nome: ${nomeDigitado}`)
+                        doc.text(`CPF: ${cpfDigitado}`)
+                        doc.text("--------------------------")
+                        doc.text(`Salário Bruto: R$ ${salarioBruto}`)
+                        doc.text(`Desconto INSS: R$ ${calcularINSS(salarioBruto)}`)
+                        doc.text(`Desconto IR: R$ ${calcularImpostoRenda(salarioBruto)}`)
+                        doc.text(`Salário Liquido: R$ ${calcSalarioLiquido(salarioBruto)}`)
+                        doc.end()
+                    } else {
+                        console.log("PDF não criado")
+                    }
+                    input.close()
+                }))
+
             })
         })
     })
 })
-
-// Agora, crie um programa que peça o nome do funcionário, CPF, o mês do pagamento (Numérico) e o salário bruto.
-
-// De posse dessas informações, faça o cálculo do salário líquido e exiba no terminal no seguinte formato:
-
-// image.png
-
-// Use as funções implementadas na questão 1 e 2.
