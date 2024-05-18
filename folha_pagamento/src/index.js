@@ -1,3 +1,7 @@
 const calcularINSS = require("./calculo_inss");
+const calcularImpostoRenda = require("./calculo_imposto_renda")
 
-console.log(calcularINSS(5100.20))
+let salario = 2400.64
+
+console.log(calcularINSS(salario))
+console.log(calcularImpostoRenda(salario))
