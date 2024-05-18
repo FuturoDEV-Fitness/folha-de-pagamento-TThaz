@@ -13,23 +13,6 @@ const input = readline.createInterface(
     process.stdout
 );
 
-// function criarPDF(valid) {
-//     if (valid == true) {
-//         doc.pipe(fs.createWriteStream("Holerite.pdf"));
-//         doc.fontSize(16)
-
-//         doc.text("--- Folha de Pagamento ---\n")
-//         doc.text(`Nome: ${nomeDigitado}`)
-//         doc.text(`CPF: ${cpfDigitado}`)
-//         doc.text("--------------------------")
-//         doc.text(`Salário Bruto: R$ ${salarioBruto}`)
-//         doc.text(`Desconto INSS: R$ ${calcularINSS(salarioBruto)}`)
-//         doc.text(`Desconto IR: R$ ${calcularImpostoRenda(salarioBruto)}`)
-//         doc.text(`Salário Liquido: R$ ${calcSalarioLiquido(salarioBruto)}`)
-//         doc.end()
-//     }
-// }
-
 input.question("Qual seu nome?: ", (nomeDigitado) => {
     input.question("Qual seu CPF?: ", (cpfDigitado) => {
         input.question("Qual o mês do pagamento? (Em número do mês): ", (mesDigitado) => {
