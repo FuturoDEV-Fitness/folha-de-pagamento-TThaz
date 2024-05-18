@@ -1,15 +1,6 @@
-const readline = require("readline")
+function calcularINSS(salarioBruto) {
 
-const input = readline.createInterface(
-    process.stdin, 
-    process.stdout
-);
-
-
-input.question("Insira seu salário para calcular o INSS: ", (dados) => {
-    let salario = Number(dados)
-    console.log(salario)
-
+    let salario = Number(salarioBruto)
     let aliquota = 0
 
     if(salario < 1412.00) {
@@ -30,7 +21,7 @@ input.question("Insira seu salário para calcular o INSS: ", (dados) => {
         calculoINSS = 908.85
     }
 
-    console.log(`O quanto você perdeu esse mês é: ${(calculoINSS).toFixed(2)}`)
-
-    input.close()
-    })
+    // console.log(`O quanto você perdeu esse mês é: ${(calculoINSS).toFixed(2)}`)
+    return (calculoINSS).toFixed(2)
+}
+    module.exports = calcularINSS
