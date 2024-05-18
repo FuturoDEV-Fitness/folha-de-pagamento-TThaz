@@ -3,7 +3,7 @@ function calcularINSS(salarioBruto) {
     let salario = Number(salarioBruto)
     let aliquota = 0
 
-    if(salario < 1412.00) {
+    if(salario <= 1412.00) {
         aliquota = 7.5
     } 
     else if (salario >= 1412.01 && salario <= 2666.68) {
